@@ -15,7 +15,7 @@ class AuthMiddleware extends RequestMiddleware
             return $this->authenticate($request, app(TokenService::class)->getAccessToken());
         };
     }
-    
+
     private function authenticate(RequestInterface $request, string $accessToken): RequestInterface
     {
         return $request->withHeader('Authorization', "Bearer {$accessToken}");

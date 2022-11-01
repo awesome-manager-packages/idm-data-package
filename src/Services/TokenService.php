@@ -43,7 +43,7 @@ class TokenService implements ServiceContract
         return (new Request())
             ->method(Method::POST)
             ->url('token/client')
-            ->formData([
+            ->body([
                 'client_id' => $config['client_id'],
                 'client_secret' => $config['client_secret']
             ]);
