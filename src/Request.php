@@ -13,4 +13,14 @@ class Request extends BaseRequest
     {
         return Connector::withMiddleware(AuthMiddleware::class)->send($this);
     }
+
+    public function withAuthorization(string $token = null): Request
+    {
+        if (!$token) {
+            $token = app('request')->bearerToken();
+        }
+        $header = config('idm.user_token_header');
+
+        return empty($token) ? $this : $this->headers([$header => $token]);
+    }
 }

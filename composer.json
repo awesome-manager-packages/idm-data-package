@@ -10,12 +10,22 @@
         }
     ],
     "require": {
-        "my-awesome-packages/connector": "^1.0"
+        "illuminate/auth": "^9.0",
+        "illuminate/database": "^9.0",
+        "illuminate/foundation": "^9.0",
+        "illuminate/http": "^9.0",
+        "illuminate/support": "^9.0",
+        "my-awesome-packages/connector": "^1.0",
+        "my-awesome-packages/foundation": "^1.0"
     },
     "repositories": [
         {
             "type": "vcs",
             "url": "git@github.com:my-awesome-packages/connector.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:my-awesome-packages/foundation.git"
         }
     ],
     "autoload": {

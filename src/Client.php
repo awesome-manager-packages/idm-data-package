@@ -20,12 +20,19 @@ class Client implements ClientContract
         return $this->makeRequest()
             ->method(Method::POST)
             ->url('token/user')
-            ->formData([
+            ->body([
                 'client_id' => $this->config['client_id'],
                 'client_secret' => $this->config['client_secret'],
                 'username' => $username,
                 'password' => $password,
             ]);
+    }
+    
+    public function getUser(string $token = null): RequestContract
+    {
+        return $this->makeRequest()
+            ->url('user')
+            ->withAuthorization($token);
     }
     
     protected function makeRequest(): RequestContract
