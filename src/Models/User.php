@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Support\Arr;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -28,6 +29,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getRoles(): array
     {
         return $this->prepareRoles($this->roles);
+    }
+    
+    public function getAccessPages(): array
+    {
+        return array_unique(Arr::flatten(array_column($this->getRoles(), 'access_pages')));
     }
 
     private function prepareRoles(array $roles): array
