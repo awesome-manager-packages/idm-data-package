@@ -8,5 +8,7 @@ interface Client
 {
     public function login(string $username, string $password): RequestContract;
 
+    public function logout(): RequestContract;
+
     public function getUser(string $token = null): RequestContract;
 }

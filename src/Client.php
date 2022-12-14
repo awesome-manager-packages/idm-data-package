@@ -9,12 +9,12 @@ use AwesomeManager\IdmData\Client\Contracts\Client as ClientContract;
 class Client implements ClientContract
 {
     private array $config;
-    
+
     public function __construct()
     {
         $this->config = config('idm');
     }
-    
+
     public function login(string $username, string $password): RequestContract
     {
         return $this->makeRequest()
@@ -27,14 +27,22 @@ class Client implements ClientContract
                 'password' => $password,
             ]);
     }
-    
+
+    public function logout(): RequestContract
+    {
+        return $this->makeRequest()
+            ->method(Method::DELETE)
+            ->url('token/user')
+            ->withAuthorization();
+    }
+
     public function getUser(string $token = null): RequestContract
     {
         return $this->makeRequest()
             ->url('user')
             ->withAuthorization($token);
     }
-    
+
     protected function makeRequest(): RequestContract
     {
         return new Request();
