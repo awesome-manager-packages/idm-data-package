@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Request login(string $username, string $password)
  * @method static Request logout()
  * @method static Request getUser(string $token = null)
+ * @method static Request refreshAccessToken(string $refreshToken)
  */
 class IdmClient extends Facade
 {

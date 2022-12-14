@@ -43,6 +43,17 @@ class Client implements ClientContract
             ->withAuthorization($token);
     }
 
+    public function refreshAccessToken(string $refreshToken): RequestContract
+    {
+        return $this->makeRequest()
+            ->url('token/refresh')
+            ->body([
+                'client_id' => $this->config['client_id'],
+                'client_secret' => $this->config['client_secret'],
+                'refresh_token' => $refreshToken,
+            ]);
+    }
+
     protected function makeRequest(): RequestContract
     {
         return new Request();

@@ -11,4 +11,6 @@ interface Client
     public function logout(): RequestContract;
 
     public function getUser(string $token = null): RequestContract;
+
+    public function refreshAccessToken(string $refreshToken): RequestContract;
 }
